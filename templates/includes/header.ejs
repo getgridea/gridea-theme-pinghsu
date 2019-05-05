@@ -1,0 +1,29 @@
+<header id="header" class="header bg-white">
+    <div class="navbar-container">
+        <a href="<%= themeConfig.domain %>" class="navbar-logo">
+            <img src="<%= themeConfig.domain %>/images/avatar.png?v=<%= site.utils.now %>" alt="<%= themeConfig.siteName %>" />
+            <%= themeConfig.siteName %>
+        </a>
+        <div class="navbar-menu">
+          <% menus.forEach(function(menu) { %>
+            <% if (menu.openType === 'External') { %>
+              <a href="<%= menu.link %>" ><%= menu.name %></a>
+            <% } else { %>
+              <a href="<%= menu.link %>" target="_blank"><%= menu.name %></a>
+            <% } %>
+          <% }); %>
+        </div>
+        <div class="navbar-mobile-menu" onclick="">
+            <span class="icon-menu cross"><span class="middle"></span></span>
+            <ul>
+              <% menus.forEach(function(menu) { %>
+                <% if (menu.openType === 'External') { %>
+                  <li><a href="<%= menu.link %>"><%= menu.name %></a></li>
+                <% } else { %>
+                  <li><a href="<%= menu.link %>" target="_blank"><%= menu.name %></a></li>
+                <% } %>
+              <% }); %>
+            </ul>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,38 @@
+<footer id="footer" class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+        <% ['github', 'twitter', 'weibo', 'zhihu', 'facebook'].forEach((item) => { %>
+          <% if (site.customConfig[item]) { %>
+            <a class="social" href="<%= site.customConfig[item] %>" target="_blank">
+              <i class="fab fa-<%= item %>"></i>
+            </a>
+          <% } %>
+        <% }) %>
+      </div>
+		</div>
+	</div>
+	<div class="footer-meta">
+		<div class="footer-container">
+			<div class="meta-item meta-copyright">
+				<div class="meta-copyright-info">
+          <a href="<%= themeConfig.domain %>" class="info-logo">
+            <%= themeConfig.siteName %>
+          </a>
+					<div class="info-text">
+              <p id="chakhsu"></p>
+            <p><%- themeConfig.footerInfo %></p>
+          </div>
+				</div>
+        </div>
+        <div class="meta-item meta-posts">
+            <h3 class="meta-title">最近文章</h3>
+            <% site.posts.forEach(function(post, index) { %>
+              <% if (index < 10) { %>
+                <li><a href="<%= post.link %>"><%= post.title %></a></li>
+              <% } %>
+            <% }); %>
+        </div>
+		</div>
+	</div>
+</footer>
