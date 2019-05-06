@@ -2,59 +2,75 @@
   <head>
     <%- include('./includes/head', { siteTitle: `${post.title} | ${themeConfig.siteName}` }) %>
   </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <%- include('./includes/header') %>
-      
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              <%= post.title %>
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · <%= post.dateFormat %> ·
-              </time>
-              <% post.tags.forEach(function(tag) { %>
-                <a href="<%= tag.link %>" class="post-tags">
-                  # <%= tag.name %>
-                </a>
-              <% }); %>
-            </div>
-            <% if (themeConfig.showFeatureImage && post.feature) { %>
-              <div class="post-feature-image" style="background-image: url('<%= post.feature %>')">
-              </div>
-            <% } %>
-            <div class="post-content">
-              <%- post.content %>
-            </div>
-          </article>
+  <body class="bg-white" gtools_scp_screen_capture_injected="true">
+    <%- include('./includes/header') %>
+    <article class="main-content page-page" itemscope itemtype="http://schema.org/Article">
+      <div class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <%= post.title %>
+        </h1>
+        <div class="post-data">
+          <time itemprop="datePublished">Published on <%= post.dateFormat %></time>
         </div>
-    
-        <% if (post.nextPost && !post.hideInList) { %>
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="<%= post.nextPost.link %>">
-              <h3 class="post-title">
-                <%= post.nextPost.title %>
-              </h3>
-            </a>
-          </div>  
+      </div>
+      <div id="post-content" class="post-content" itemprop="articleBody">
+        <p class="post-tags">
+          <% post.tags.forEach(function(tag) { %>
+            <a href="<%= tag.link %>"><%= tag.name %></a>
+          <% }); %>
+        </p>
+        <% if (themeConfig.showFeatureImage && post.feature) { %>
+          <div class="post-feature-image" style="background-image: url('<%= post.feature %>')">
+          </div>
         <% } %>
-
-        <% if (typeof commentSetting !== 'undefined' && commentSetting.showComment) { %>
-          <% if (commentSetting.commentPlatform === 'gitalk') { %>
-            <%- include('./includes/gitalk') %>
+        <%- post.content %>
+      </div>
+    </article>
+    <div id="post-bottom-bar" class="post-bottom-bar">
+      <div class="bottom-bar-inner">
+        <div class="bottom-bar-items social-share left">
+        </div>
+        <div class="bottom-bar-items right">
+          <% if (post.nextPost && !post.hideInList) { %>
+            <span class="bottom-bar-item"><a href="<%= post.nextPost.link %>">→</a></span>
           <% } %>
-
-          <% if (commentSetting.commentPlatform === 'disqus') { %>
-            <%- include('./includes/disqus') %>
-          <% } %>
-        <% } %>
-    
-        <%- include('./includes/footer') %>
+          <span class="bottom-bar-item"><a href="#footer">↓</a></span>
+          <span class="bottom-bar-item"><a href="#">↑</a></span>
+        </div>
       </div>
     </div>
+
+    <% if (typeof commentSetting !== 'undefined' && commentSetting.showComment) { %>
+      <% if (commentSetting.commentPlatform === 'gitalk') { %>
+        <%- include('./includes/gitalk') %>
+      <% } %>
+
+      <% if (commentSetting.commentPlatform === 'disqus') { %>
+        <%- include('./includes/disqus') %>
+      <% } %>
+    <% } %>
+
+    <div id="directory-content" class="directory-content">
+        <div id="directory">
+          <%- post.toc %>
+        </div>
+    </div>
+
+    <%- include('./includes/footer') %>
+    <%- include('./includes/scripts') %>
+    <script src="//cdn.bootcss.com/headroom/0.9.1/headroom.min.js"></script>
+    <script>
+      var postDirectory = new Headroom(document.getElementById("directory-content"), {
+          tolerance: 0,
+          offset : 90,
+          classes: {
+            initial: "initial",
+            pinned: "pinned",
+            unpinned: "unpinned"
+          }
+      });
+      postDirectory.init();
+    </script>
   </body>
 </html>
+
