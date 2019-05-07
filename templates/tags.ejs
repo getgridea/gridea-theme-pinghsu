@@ -1,20 +1,26 @@
 <html>
   <head>
-  <%- include('./includes/head', { siteTitle: themeConfig.siteName }) %>
+    <%- include('./includes/head', { siteTitle: themeConfig.siteName }) %>
   </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <%- include('./includes/header') %>
+  <body class="bg-grey" gtools_scp_screen_capture_injected="true">
+    <%- include('./includes/header') %>
 
-        <div class="tags-container">
-          <% tags.forEach((tag) => { %>
-            <a class="tag" href="<%= tag.link %>"><%= tag.name %></a>
-          <% }); %>
+    <div class="main-content page-page">
+        <div class="search-page">
+            <div class="search-title">
+                <h1>所有标签</h1>
+                <h4>目前共计 <%- tags.length %> 个标签</h4>
+            </div>
+            <div class="search-tags">
+                <% tags.forEach((tag) => { %>
+                  <a href="<%= tag.link %>" class=" white"># <%= tag.name %></a>
+                <% }); %>
+                <div class="search-tags-hr deepgrey %>"></div>
+            </div>
         </div>
-
-        <%- include('./includes/footer') %>
-      </div>
     </div>
+
+    <%- include('./includes/footer') %>
+    <%- include('./includes/scripts') %>
   </body>
 </html>

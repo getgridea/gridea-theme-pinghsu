@@ -7,9 +7,9 @@
         <div class="navbar-menu">
           <% menus.forEach(function(menu) { %>
             <% if (menu.openType === 'External') { %>
-              <a href="<%= menu.link %>" ><%= menu.name %></a>
-            <% } else { %>
               <a href="<%= menu.link %>" target="_blank"><%= menu.name %></a>
+            <% } else { %>
+              <a href="<%= menu.link %>"><%= menu.name %></a>
             <% } %>
           <% }); %>
         </div>
@@ -18,9 +18,9 @@
             <ul>
               <% menus.forEach(function(menu) { %>
                 <% if (menu.openType === 'External') { %>
-                  <li><a href="<%= menu.link %>"><%= menu.name %></a></li>
-                <% } else { %>
                   <li><a href="<%= menu.link %>" target="_blank"><%= menu.name %></a></li>
+                <% } else { %>
+                  <li><a href="<%= menu.link %>"><%= menu.name %></a></li>
                 <% } %>
               <% }); %>
             </ul>

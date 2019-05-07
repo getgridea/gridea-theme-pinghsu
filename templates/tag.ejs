@@ -1,20 +1,38 @@
 <html>
   <head>
-  <%- include('./includes/head', { siteTitle: `${tag.name} | ${themeConfig.siteName}` }) %>
+    <%- include('./includes/head', { siteTitle: `${tag.name} | ${themeConfig.siteName}` }) %>
   </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <%- include('./includes/header') %>
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：#<%= tag.name %>
-            </h2> 
+  <body class="bg-grey" gtools_scp_screen_capture_injected="true">
+    <%- include('./includes/header') %>
+
+    <div class="main-content common-page clearfix">
+        <div class="common-item">
+            <div class="common-title">
+                Tag: <%= tag.name %>
+            </div>
+            <div class="post-lists">
+          <div class="post-lists-body">
+            <% posts.forEach(function(post) { %>
+            <div class="post-list-item">
+              <div class="post-list-item-container white">
+                <div class="item-label white">
+                  <div class="item-title"><a href="<%= post.link %>"><%= post.title %></a></div>
+                  <div class="item-meta clearfix">
+                    <div class="item-meta-date"> <%= post.dateFormat %> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
         </div>
-        <%- include('./includes/post-list') %>
-        <%- include('./includes/pagination') %>
-        <%- include('./includes/footer') %>
-      </div>
+        </div>
+        <div class="lists-navigator clearfix">
+          <%- include('./includes/pagination') %>
+        </div>
     </div>
+
+    <%- include('./includes/footer') %>
+    <%- include('./includes/scripts') %>
   </body>
 </html>

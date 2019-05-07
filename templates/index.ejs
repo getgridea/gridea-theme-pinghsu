@@ -11,15 +11,15 @@
           <% if (site.customConfig.column === 'three' || site.customConfig.column !== 'one') { %>
                 <div class="post-list-item">
             <div class="post-list-item-container">
-              <div class="item-thumb deepgrey" style="background-image: url('<%= post.feature %>');"></div>
+              <div class="item-thumb bg-deepgrey" style="background-image: url('<%= post.feature %>');"></div>
               <a href="<%= post.link %>">
                 <div class="item-desc">
                   <% if (post.abstract) { %>
-                    <p><%- post.abstract.substring(0, 75) + '...' %></p>
+                    <p><%- post.abstract.substring(0, 75) %></p>
                   <% } %>
                 </div>
               </a>
-              <div class="item-slant reverse-slant deepgrey"></div>
+              <div class="item-slant reverse-slant bg-deepgrey"></div>
               <div class="item-slant"></div>
               <div class="item-label">
                 <div class="item-title"><a href="<%= post.link %>"><%= post.title %></a></div>
@@ -37,23 +37,23 @@
             </div>
           </div>
           <% } %>
-          <% if (site.customConfig.column == 'one') { %>
+          <% if (site.customConfig.column === 'one') { %>
           <div class="post-onelist-item">
             <div class="post-onelist-item-container">
               <a href="<%= post.link %>">
-                <div class="onelist-item-thumb deepgrey" style="background-image: url('<%= post.feature %>');"></div>
+                <div class="onelist-item-thumb bg-deepgrey" style="background-image: url('<%= post.feature %>');"></div>
               </a>
               <div class="onelist-item-info">
                 <div class="item-title">
                   <a href="<%= post.link %>"><%= post.title %></a>
                 </div>
                 <div class="item-meta">
-                  <time itemprop="datePublished">Published on <%= post.dateFormat %><% if (post.tags.length != 0) { %> in <% } %></time><% post.tags.forEach(function(tags, index) { %><a href="<%= tag.link %>"><%= tag.name %><% if (index !== post.tags.length - 1) { %> / <% } %></a><% }); %>
+                  <time itemprop="datePublished">Published on <%= post.dateFormat %><% if (post.tags.length != 0) { %> in <% } %></time><% post.tags.forEach(function(tag, index) { %><a href="<%= tag.link %>"><%= tag.name %><% if (index !== post.tags.length - 1) { %> / <% } %></a><% }); %>
                 </div>
-                <div class="item-meta-hr deepgrey"></div>
+                <div class="item-meta-hr bg-deepgrey"></div>
                 <div class="item-content">
                   <% if (post.abstract) { %>
-                    <p><%- post.abstract.substring(0, 150) + '...' %></p>
+                    <p><%- post.abstract.substring(0, 150) %></p>
                   <% } %>
                 </div>
                 <div class="item-readmore">

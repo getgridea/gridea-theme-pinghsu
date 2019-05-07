@@ -2,17 +2,39 @@
   <head>
     <%- include('./includes/head', { siteTitle: themeConfig.siteName }) %>
   </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <%- include('./includes/header') %>
-    
-        <%- include('./includes/post-list-archives') %>
-    
-        <%- include('./includes/pagination') %>
-    
-        <%- include('./includes/footer') %>
-      </div>
+  <body class="bg-grey" gtools_scp_screen_capture_injected="true">
+    <%- include('./includes/header') %>
+
+    <div class="main-content archive-page clearfix">
+        <div class="categorys-item">
+            <% let years = []; posts.forEach((item) => { const year = item.date.substring(0, 4); if (!years.includes(year)) { years.push(year); } }); %>
+            <% years.forEach(function(year) { %>
+              <div class="categorys-title"><%- year %></div>
+              <div class="post-lists">
+                <div class="post-lists-body">
+                    <% posts.forEach(function(post) { %>
+                      <%if (post.date.indexOf(year) !== -1) { %>
+                        <div class="post-list-item">
+                            <div class="post-list-item-container">
+                                <div class="item-label">
+                                    <div class="item-title">
+                                        <a href="<%= post.link %>"><%= post.title %></a>
+                                    </div>
+                                    <div class="item-meta clearfix">
+                                        <div class="item-meta-date"><%= post.dateFormat %></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      <% } %>
+                    <% }); %>
+                </div>
+            </div>
+            <% }); %>
+        </div>
     </div>
+
+    <%- include('./includes/footer') %>
+    <%- include('./includes/scripts') %>
   </body>
 </html>
